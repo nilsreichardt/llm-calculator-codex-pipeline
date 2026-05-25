@@ -65,6 +65,17 @@ OpenAI API. They skip automatically if `OPENAI_API_KEY` is not set.
 .venv/bin/pytest -v
 ```
 
+## CI
+
+GitHub Actions runs the E2E workflow on pushes to `main`, pull requests targeting
+`main`, and manual dispatches. Add `OPENAI_API_KEY` as a repository secret so the
+workflow can run the live OpenAI-backed E2E tests.
+
+Pull requests from forks run through `pull_request_target`, which lets the
+workflow check out the contributor's changes and run the live E2E tests with the
+repository secret. Use a dedicated OpenAI API key with tight project limits for
+this workflow, because fork pull requests execute contributor code.
+
 ## Files
 
 | File                 | Purpose                                          |
